@@ -8,8 +8,12 @@
   box2d.Vector2D = (function() {
 
     function Vector2D(x, y) {
-      this.x = x != null ? x : 0.0;
-      this.y = y != null ? y : 0.0;
+      if (x !== null && isNaN(x) || y !== null && isNaN(y)) {
+        throw new TypeError;
+      } else {
+        this.x = x != null ? x : 0.0;
+        this.y = y != null ? y : 0.0;
+      }
     }
 
     Vector2D.prototype.SetZero = function() {
@@ -19,14 +23,22 @@
     };
 
     Vector2D.prototype.Set = function(x, y) {
-      this.x = x;
-      this.y = y;
+      if (isNaN(x) || isNaN(y)) {
+        throw new TypeError;
+      } else {
+        this.x = x;
+        this.y = y;
+      }
       return this;
     };
 
     Vector2D.prototype.SetV = function(vector) {
-      this.x = vector.x;
-      this.y = vector.y;
+      if (vector === null || isNaN(vector.x) || isNaN(vector.y)) {
+        throw new TypeError;
+      } else {
+        this.x = vector.x;
+        this.y = vector.y;
+      }
       return this;
     };
 
@@ -39,20 +51,32 @@
     };
 
     Vector2D.prototype.Add = function(vector) {
-      this.x += vector.x;
-      this.y += vector.y;
+      if (vector === null || isNaN(vector.x) || isNaN(vector.y)) {
+        throw new TypeError;
+      } else {
+        this.x += vector.x;
+        this.y += vector.y;
+      }
       return this;
     };
 
-    Vector2D.prototype.Subtract = function(v) {
-      this.x -= v.x;
-      this.y -= v.y;
+    Vector2D.prototype.Subtract = function(vector) {
+      if (vector === null || isNaN(vector.x) || isNaN(vector.y)) {
+        throw new TypeError;
+      } else {
+        this.x -= vector.x;
+        this.y -= vector.y;
+      }
       return this;
     };
 
     Vector2D.prototype.Multiply = function(scalar) {
-      this.x *= scalar;
-      this.y *= scalar;
+      if (vector === null || isNaN(scalar)) {
+        throw new TypeError;
+      } else {
+        this.x *= scalar;
+        this.y *= scalar;
+      }
       return this;
     };
 

@@ -3,8 +3,11 @@ box2d: exports? and exports or @box2d or @box2d = {}
 
 class box2d.Vector2D
 	constructor: ( x, y ) ->
-		@x = x ? 0.0
-		@y = y ? 0.0
+		if x != null and isNaN( x ) or y != null and isNaN( y )
+			throw new TypeError
+		else
+			@x = x ? 0.0
+			@y = y ? 0.0
 
 	SetZero: -> 
 		@x = 0.0
@@ -13,14 +16,20 @@ class box2d.Vector2D
 		return @
 
 	Set: ( x, y ) -> 
-		@x = x
-		@y = y
+		if isNaN( x ) or isNaN( y )
+			throw new TypeError
+		else
+			@x = x
+			@y = y
 
 		return @
 
 	SetV: ( vector ) -> 
-		@x = vector.x
-		@y = vector.y
+		if vector == null or isNaN( vector.x ) or isNaN( vector.y )
+			throw new TypeError
+		else
+			@x = vector.x
+			@y = vector.y
 
 		return @
 
@@ -31,20 +40,28 @@ class box2d.Vector2D
 		new box2d.Vector2D( @x, @y )
 
 	Add: ( vector ) ->
-		@x += vector.x
-		@y += vector.y
+		if vector == null or isNaN( vector.x ) or isNaN( vector.y )
+			throw new TypeError
+		else
+			@x += vector.x
+			@y += vector.y
 
 		return @
 
-	Subtract: ( v ) ->
-		@x -= v.x
-		@y -= v.y
+	Subtract: ( vector ) ->
+		if vector == null or isNaN( vector.x ) or isNaN( vector.y )
+			throw new TypeError
+		else
+			@x -= vector.x
+			@y -= vector.y
 
 		return @
 
 	Multiply: ( scalar ) ->
-		@x *= scalar
-		@y *= scalar
+		if vector == null or isNaN( scalar )
+			throw new TypeError
+		else
+			@x *= scalar
+			@y *= scalar
 
 		return @
-
