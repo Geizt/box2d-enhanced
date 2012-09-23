@@ -2,7 +2,7 @@
 (function() {
 
   ({
-    box2d: (typeof exports !== "undefined" && exports !== null) && exports || (this.box2d = {})
+    box2d: (typeof exports !== "undefined" && exports !== null) && exports || this.box2d || (this.box2d = {})
   });
 
   box2d.Settings = (function() {
