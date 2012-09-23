@@ -1,5 +1,5 @@
 # Create a namespace to export public methods
-box2d: exports? and exports or @box2d = {}
+box2d: exports? and exports or @box2d or @box2d = {}
 
 # Define your unit system here. The default system is
 # meters-kilograms-seconds. For the tuning to work well,
