@@ -71,13 +71,110 @@
     };
 
     Vector2D.prototype.Multiply = function(scalar) {
-      if (vector === null || isNaN(scalar)) {
+      if (scalar === null || isNaN(scalar)) {
         throw new TypeError;
       } else {
         this.x *= scalar;
         this.y *= scalar;
       }
       return this;
+    };
+
+    Vector2D.prototype.MulM = function(matrix) {
+      var tX;
+      if (matrix === null || isNaN(matrix.col1.x) || isNaN(matrix.col1.y) || isNaN(matrix.col2.x) || isNaN(matrix.col2.y)) {
+        throw new TypeError;
+      } else {
+        tX = this.x;
+        this.x = matrix.col1.x * tX + matrix.col2.x * this.y;
+        this.y = matrix.col1.y * tX + matrix.col2.y * this.y;
+      }
+      return this;
+    };
+
+    Vector2D.prototype.MulTM = function(matrix) {
+      var tX;
+      if (matrix === null || isNaN(matrix.col1.x) || isNaN(matrix.col1.y) || isNaN(matrix.col2.x) || isNaN(matrix.col2.y)) {
+        throw new TypeError;
+      } else {
+        tX = box2d.Math.Dot(this, matrix.col1);
+        this.y = box2d.Math.Dot(this, matrix.col2);
+        this.x = tX;
+      }
+      return this;
+    };
+
+    Vector2D.prototype.CrossVF = function(scalar) {
+      var tX;
+      if (scalar === null || isNaN(scalar)) {
+        throw new TypeError;
+      } else {
+        tX = this.x;
+        this.x = scalar * this.y;
+        this.y = -scalar * tX;
+      }
+      return this;
+    };
+
+    Vector2D.prototype.CrossFV = function(scalar) {
+      var tX;
+      if (scalar === null || isNaN(scalar)) {
+        throw new TypeError;
+      } else {
+        tX = this.x;
+        this.x = -scalar * this.y;
+        this.y = scalar * tX;
+      }
+      return this;
+    };
+
+    Vector2D.prototype.MinV = function(vector) {
+      if (vector === null || isNaN(vector.x) || isNaN(vector.y)) {
+        throw new TypeError;
+      } else {
+        this.x = this.x < vector.x ? this.x : vector.x;
+        this.y = this.y < vector.y ? this.y : vector.y;
+      }
+      return this;
+    };
+
+    Vector2D.prototype.MaxV = function(vector) {
+      if (vector === null || isNaN(vector.x) || isNaN(vector.y)) {
+        throw new TypeError;
+      } else {
+        this.x = this.x > vector.x ? this.x : vector.x;
+        return this.y = this.y > vector.y ? this.y : vector.y;
+      }
+    };
+
+    Vector2D.prototype.Abs = function() {
+      this.x = Math.abs(this.x);
+      this.y = Math.abs(this.y);
+      return this;
+    };
+
+    Vector2D.prototype.Length = function() {
+      return Math.sqrt(this.x * this.x + this.y * this.y);
+    };
+
+    Vector2D.prototype.Normalize = function() {
+      var invLength, length;
+      length = this.Length();
+      if (length < Number.MIN_VALUE) {
+        return 0.0;
+      }
+      invLength = 1.0 / length;
+      this.x *= invLength;
+      this.y *= invLength;
+      return this;
+    };
+
+    Vector2D.prototype.IsValid = function() {
+      return box2d.Math.IsValid(this.x) && box2d.Math.IsValid(this.y);
+    };
+
+    Vector2D.prototype.Make = function(x, y) {
+      return new box2d.Vector2D(x, y);
     };
 
     return Vector2D;
