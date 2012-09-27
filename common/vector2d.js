@@ -8,13 +8,17 @@
   box2d.Vector2D = (function() {
 
     function Vector2D(x, y) {
-      if (x !== null && isNaN(x) || y !== null && isNaN(y)) {
+      if (x !== null && !box2d.Math.IsValid(x) || y !== null && !box2d.Math.IsValid(y)) {
         throw new TypeError;
       } else {
         this.x = x != null ? x : 0.0;
         this.y = y != null ? y : 0.0;
       }
     }
+
+    Vector2D.prototype.IsValid = function() {
+      return box2d.Math.IsValid(this.x) && box2d.Math.IsValid(this.y);
+    };
 
     Vector2D.prototype.SetZero = function() {
       this.x = 0.0;
@@ -23,7 +27,7 @@
     };
 
     Vector2D.prototype.Set = function(x, y) {
-      if (isNaN(x) || isNaN(y)) {
+      if (!box2d.Math.IsValid(x) || !box2d.Math.IsValid(y)) {
         throw new TypeError;
       } else {
         this.x = x;
@@ -33,7 +37,7 @@
     };
 
     Vector2D.prototype.SetV = function(vector) {
-      if (vector === null || isNaN(vector.x) || isNaN(vector.y)) {
+      if (vector === null || !vector.IsValid()) {
         throw new TypeError;
       } else {
         this.x = vector.x;
@@ -51,7 +55,7 @@
     };
 
     Vector2D.prototype.Add = function(vector) {
-      if (vector === null || isNaN(vector.x) || isNaN(vector.y)) {
+      if (vector === null || !vector.IsValid()) {
         throw new TypeError;
       } else {
         this.x += vector.x;
@@ -61,7 +65,7 @@
     };
 
     Vector2D.prototype.Subtract = function(vector) {
-      if (vector === null || isNaN(vector.x) || isNaN(vector.y)) {
+      if (vector === null || !vector.IsValid()) {
         throw new TypeError;
       } else {
         this.x -= vector.x;
@@ -71,7 +75,7 @@
     };
 
     Vector2D.prototype.Multiply = function(scalar) {
-      if (scalar === null || isNaN(scalar)) {
+      if (scalar === null || !box2d.Math.IsValid(scalar)) {
         throw new TypeError;
       } else {
         this.x *= scalar;
@@ -82,7 +86,7 @@
 
     Vector2D.prototype.MulM = function(matrix) {
       var tX;
-      if (matrix === null || isNaN(matrix.col1.x) || isNaN(matrix.col1.y) || isNaN(matrix.col2.x) || isNaN(matrix.col2.y)) {
+      if (matrix === null || !matrix.IsValid()) {
         throw new TypeError;
       } else {
         tX = this.x;
@@ -94,7 +98,7 @@
 
     Vector2D.prototype.MulTM = function(matrix) {
       var tX;
-      if (matrix === null || isNaN(matrix.col1.x) || isNaN(matrix.col1.y) || isNaN(matrix.col2.x) || isNaN(matrix.col2.y)) {
+      if (matrix === null || !matrix.IsValid()) {
         throw new TypeError;
       } else {
         tX = box2d.Math.Dot(this, matrix.col1);
@@ -106,7 +110,7 @@
 
     Vector2D.prototype.CrossVF = function(scalar) {
       var tX;
-      if (scalar === null || isNaN(scalar)) {
+      if (scalar === null || !box2d.Math.IsValid(scalar)) {
         throw new TypeError;
       } else {
         tX = this.x;
@@ -118,7 +122,7 @@
 
     Vector2D.prototype.CrossFV = function(scalar) {
       var tX;
-      if (scalar === null || isNaN(scalar)) {
+      if (scalar === null || !box2d.Math.IsValid(scalar)) {
         throw new TypeError;
       } else {
         tX = this.x;
@@ -129,7 +133,7 @@
     };
 
     Vector2D.prototype.MinV = function(vector) {
-      if (vector === null || isNaN(vector.x) || isNaN(vector.y)) {
+      if (vector === null || !vector.IsValid()) {
         throw new TypeError;
       } else {
         this.x = this.x < vector.x ? this.x : vector.x;
@@ -139,7 +143,7 @@
     };
 
     Vector2D.prototype.MaxV = function(vector) {
-      if (vector === null || isNaN(vector.x) || isNaN(vector.y)) {
+      if (vector === null || !vector.IsValid()) {
         throw new TypeError;
       } else {
         this.x = this.x > vector.x ? this.x : vector.x;
@@ -169,12 +173,12 @@
       return this;
     };
 
-    Vector2D.prototype.IsValid = function() {
-      return box2d.Math.IsValid(this.x) && box2d.Math.IsValid(this.y);
+    Vector2D.prototype.ToString = function() {
+      return '( ' + this.x + ', ' + this.y + ' )';
     };
 
-    Vector2D.prototype.Make = function(x, y) {
-      return new box2d.Vector2D(x, y);
+    Vector2D.prototype.Serialize = function() {
+      return '{ "x": ' + this.x + ', "y": ' + this.y + ' }';
     };
 
     return Vector2D;

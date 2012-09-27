@@ -3,11 +3,14 @@ box2d: exports? and exports or @box2d or @box2d = {}
 
 class box2d.Vector2D
 	constructor: ( x, y ) ->
-		if x != null and isNaN( x ) or y != null and isNaN( y )
+		if x != null and not box2d.Math.IsValid( x ) or y != null and not box2d.Math.IsValid( y )
 			throw new TypeError
 		else
 			@x = x ? 0.0
 			@y = y ? 0.0
+
+	IsValid: ->
+		box2d.Math.IsValid( @.x ) && box2d.Math.IsValid( @.y )
 
 	SetZero: -> 
 		@x = 0.0
@@ -16,7 +19,7 @@ class box2d.Vector2D
 		return @
 
 	Set: ( x, y ) -> 
-		if isNaN( x ) or isNaN( y )
+		if not box2d.Math.IsValid( x ) or not box2d.Math.IsValid( y )
 			throw new TypeError
 		else
 			@x = x
@@ -25,7 +28,7 @@ class box2d.Vector2D
 		return @
 
 	SetV: ( vector ) -> 
-		if vector == null or isNaN( vector.x ) or isNaN( vector.y )
+		if vector == null or not vector.IsValid()
 			throw new TypeError
 		else
 			@x = vector.x
@@ -40,7 +43,7 @@ class box2d.Vector2D
 		new box2d.Vector2D( @x, @y )
 
 	Add: ( vector ) ->
-		if vector == null or isNaN( vector.x ) or isNaN( vector.y )
+		if vector == null or not vector.IsValid()
 			throw new TypeError
 		else
 			@x += vector.x
@@ -49,7 +52,7 @@ class box2d.Vector2D
 		return @
 
 	Subtract: ( vector ) ->
-		if vector == null or isNaN( vector.x ) or isNaN( vector.y )
+		if vector == null or not vector.IsValid()
 			throw new TypeError
 		else
 			@x -= vector.x
@@ -58,7 +61,7 @@ class box2d.Vector2D
 		return @
 
 	Multiply: ( scalar ) ->
-		if scalar == null or isNaN( scalar )
+		if scalar == null or not box2d.Math.IsValid( scalar )
 			throw new TypeError
 		else
 			@x *= scalar
@@ -67,29 +70,29 @@ class box2d.Vector2D
 		return @
 
 	MulM: ( matrix ) ->
-		if matrix == null or isNaN( matrix.col1.x ) or isNaN( matrix.col1.y ) or isNaN( matrix.col2.x ) or isNaN( matrix.col2.y )
+		if matrix == null or not matrix.IsValid()
 			throw new TypeError
 		else
 			tX = @.x;
 
-			@.x = matrix.col1.x * tX + matrix.col2.x * @.y;
-			@.y = matrix.col1.y * tX + matrix.col2.y * @.y;
+			@.x = matrix.column_1.x * tX + matrix.column_2.x * @.y;
+			@.y = matrix.column_1.y * tX + matrix.column_2.y * @.y;
 
 		return @
 	
 	MulTM: ( matrix ) ->
-		if matrix == null or isNaN( matrix.col1.x ) or isNaN( matrix.col1.y ) or isNaN( matrix.col2.x ) or isNaN( matrix.col2.y )
+		if matrix == null or not matrix.IsValid()
 			throw new TypeError
 		else
-			tX = box2d.Math.Dot( @, matrix.col1 )
+			tX = box2d.Math.Dot( @, matrix.column_1 )
 
-			@.y = box2d.Math.Dot( @, matrix.col2 );
+			@.y = box2d.Math.Dot( @, matrix.column_2 );
 			@.x = tX;
 
 		return @
 
 	CrossVF: ( scalar ) ->
-		if scalar == null or isNaN( scalar )
+		if scalar == null or not box2d.Math.IsValid( scalar )
 			throw new TypeError
 		else
 			tX = @.x
@@ -100,7 +103,7 @@ class box2d.Vector2D
 		return @
 
 	CrossFV: ( scalar ) ->
-		if scalar == null or isNaN( scalar )
+		if scalar == null or not box2d.Math.IsValid( scalar )
 			throw new TypeError
 		else
 			tX = @.x
@@ -111,7 +114,7 @@ class box2d.Vector2D
 		return @
 
 	MinV: ( vector ) ->
-		if vector == null or isNaN( vector.x ) or isNaN( vector.y )
+		if vector == null or not vector.IsValid()
 			throw new TypeError
 		else
 			@.x = if @.x < vector.x then @.x else vector.x
@@ -120,7 +123,7 @@ class box2d.Vector2D
 		return @
 	
 	MaxV: ( vector ) ->
-		if vector == null or isNaN( vector.x ) or isNaN( vector.y )
+		if vector == null or not vector.IsValid()
 			throw new TypeError
 		else
 			@.x = if @.x > vector.x then @.x else vector.x
@@ -148,8 +151,8 @@ class box2d.Vector2D
 
 		return @
 
-	IsValid: ->
-		return box2d.Math.IsValid( @.x ) && box2d.Math.IsValid( @.y )
+	ToString: ->
+		return '( ' + @x + ', ' + @y + ' )'
 
-	Make: ( x, y ) ->
-		return new box2d.Vector2D( x, y )
+	Serialize: ->
+		return '{ "x": ' + @x + ', "y": ' + @y + ' }'
