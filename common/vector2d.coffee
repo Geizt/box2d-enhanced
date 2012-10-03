@@ -3,7 +3,7 @@ box2d: exports? and exports or @box2d or @box2d = {}
 
 class box2d.Vector2D
 	constructor: ( x, y ) ->
-		if x != null and not box2d.Math.IsValid( x ) or y != null and not box2d.Math.IsValid( y )
+		if x? and not box2d.Math.IsValid( x ) or y? and not box2d.Math.IsValid( y )
 			throw new TypeError
 		else
 			@x = x ? 0.0

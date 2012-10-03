@@ -8,7 +8,7 @@
   box2d.Vector2D = (function() {
 
     function Vector2D(x, y) {
-      if (x !== null && !box2d.Math.IsValid(x) || y !== null && !box2d.Math.IsValid(y)) {
+      if ((x != null) && !box2d.Math.IsValid(x) || (y != null) && !box2d.Math.IsValid(y)) {
         throw new TypeError;
       } else {
         this.x = x != null ? x : 0.0;
@@ -90,8 +90,8 @@
         throw new TypeError;
       } else {
         tX = this.x;
-        this.x = matrix.col1.x * tX + matrix.col2.x * this.y;
-        this.y = matrix.col1.y * tX + matrix.col2.y * this.y;
+        this.x = matrix.column_1.x * tX + matrix.column_2.x * this.y;
+        this.y = matrix.column_1.y * tX + matrix.column_2.y * this.y;
       }
       return this;
     };
@@ -101,8 +101,8 @@
       if (matrix === null || !matrix.IsValid()) {
         throw new TypeError;
       } else {
-        tX = box2d.Math.Dot(this, matrix.col1);
-        this.y = box2d.Math.Dot(this, matrix.col2);
+        tX = box2d.Math.Dot(this, matrix.column_1);
+        this.y = box2d.Math.Dot(this, matrix.column_2);
         this.x = tX;
       }
       return this;
