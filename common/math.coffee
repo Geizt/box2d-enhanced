@@ -2,8 +2,8 @@
 box2d: exports? and exports or @box2d or @box2d = {}
 
 class box2d.Math
-	@IsValid: ( x ) ->
-		return isFinite( x )
+	@IsValid: ( scalar ) ->
+		return isFinite( scalar )
 
 	@Dot: ( vector_1, vector_2 ) ->
 		if vector_1 == null or not vector_1.IsValid() or vector_2 == null or not vector_2.IsValid()

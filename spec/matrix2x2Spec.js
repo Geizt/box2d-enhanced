@@ -9,7 +9,7 @@
     var matrix2x2;
     matrix2x2 = null;
     beforeEach(function() {
-      return matrix2x2 = new box2d.Matrix2x2(new box2d.Vector2D(1, 2), new box2d.Vector2D(3, 4));
+      matrix2x2 = new box2d.Matrix2x2(new box2d.Vector2D(1, 2), new box2d.Vector2D(3, 4));
     });
     it('can be initialized', function() {
       expect(matrix2x2.column_1.x).toBe(1);

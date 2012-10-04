@@ -9,8 +9,8 @@
 
     function Math() {}
 
-    Math.IsValid = function(x) {
-      return isFinite(x);
+    Math.IsValid = function(scalar) {
+      return isFinite(scalar);
     };
 
     Math.Dot = function(vector_1, vector_2) {

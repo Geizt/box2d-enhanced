@@ -9,7 +9,7 @@
     var vector2d;
     vector2d = null;
     beforeEach(function() {
-      return vector2d = new box2d.Vector2D(2, 3);
+      vector2d = new box2d.Vector2D(2, 3);
     });
     it('can be initialized', function() {
       expect(vector2d.x).toBe(2);

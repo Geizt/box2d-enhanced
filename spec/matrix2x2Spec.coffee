@@ -7,6 +7,8 @@ describe 'Matrix2x2', ->
 	beforeEach ->
 		matrix2x2 = new box2d.Matrix2x2( new box2d.Vector2D( 1, 2 ), new box2d.Vector2D( 3, 4 ) )
 
+		return
+
 	it 'can be initialized', ->
 		expect( matrix2x2.column_1.x ).toBe 1
 		expect( matrix2x2.column_1.y ).toBe 2

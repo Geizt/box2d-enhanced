@@ -7,6 +7,8 @@ describe 'Vector2D', ->
 	beforeEach ->
 		vector2d = new box2d.Vector2D( 2, 3 )
 
+		return
+
 	it 'can be initialized', ->
 		expect( vector2d.x ).toBe 2
 		expect( vector2d.y ).toBe 3
