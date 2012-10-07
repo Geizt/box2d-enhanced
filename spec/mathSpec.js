@@ -6,17 +6,33 @@
   });
 
   describe('Math', function() {
-    var matrix2x2, scalar, vector2d;
+    var another_vector2d, matrix2x2, scalar, vector2d;
     scalar = null;
     vector2d = null;
+    another_vector2d = null;
     matrix2x2 = null;
     beforeEach(function() {
       scalar = 4;
       vector2d = new box2d.Vector2D(2, 3);
+      another_vector2d = new box2d.Vector2D(4, 5);
       matrix2x2 = new box2d.Matrix2x2(new box2d.Vector2D(1, 2), new box2d.Vector2D(3, 4));
     });
-    return it('can validate', function() {
+    it('can validate a scalar', function() {
       return expect(box2d.Math.IsValid(scalar)).toBe(true);
+    });
+    it('can calculate the dot-product', function() {
+      return expect(box2d.Math.Dot(vector2d, another_vector2d)).toBe(23);
+    });
+    return it('can calculate the cross-product', function() {
+      var cross_sv, cross_vs, cross_vv;
+      cross_vv = box2d.Math.CrossVV(vector2d, another_vector2d);
+      cross_vs = box2d.Math.CrossVS(vector2d, scalar);
+      cross_sv = box2d.Math.CrossSV(scalar, another_vector2d);
+      expect(cross_vv).toBe(-2);
+      expect(cross_vs.x).toBe(12);
+      expect(cross_vs.y).toBe(-8);
+      expect(cross_sv.x).toBe(-20);
+      return expect(cross_sv.y).toBe(16);
     });
   });
 

@@ -9,21 +9,21 @@ class box2d.Math
 		if vector_1 == null or not vector_1.IsValid() or vector_2 == null or not vector_2.IsValid()
 			throw new TypeError
 		
-		return vector_1.x * vector_2.x + vector_1.y * vector_2.y;
+		return vector_1.x * vector_2.x + vector_1.y * vector_2.y
 	
 	@CrossVV: ( vector_1, vector_2 ) ->
 		if vector_1 == null or not vector_1.IsValid() or vector_2 == null or not vector_2.IsValid()
 			throw new TypeError
 
-		return vector_1.x * vector_2.y - vector_1.y * vector_2.x;
+		return vector_1.x * vector_2.y - vector_1.y * vector_2.x
 
-	@CrossVF: ( vector, scalar ) ->
+	@CrossVS: ( vector, scalar ) ->
 		if vector == null or not vector.IsValid() or scalar == null or not @IsValid( scalar )
 			throw new TypeError
 
-		return new box2d.Vector2D( scalar * vector.y, -scalar * vector.x );
+		return new box2d.Vector2D( scalar * vector.y, -scalar * vector.x )
 	
-	@CrossFV: ( scalar, vector ) ->
+	@CrossSV: ( scalar, vector ) ->
 		if scalar == null or not @IsValid( scalar ) or vector == null or not vector.IsValid()
 			throw new TypeError
 
@@ -47,7 +47,7 @@ class box2d.Math
 	@SubtractVV: ( vector_1, vector_2 ) ->
 		return new box2d.Vector2D( vector_1.x - vector_2.x, vector_1.y - vector_2.y )
 
-	@MulFV: ( scalar, vector ) ->
+	@MulSV: ( scalar, vector ) ->
 		return new box2d.Vector2D( scalar * vector.x, scalar * vector.y )
 
 	@AddMM: ( matrix_1, matrix_2 ) ->

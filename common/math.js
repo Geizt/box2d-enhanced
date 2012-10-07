@@ -27,14 +27,14 @@
       return vector_1.x * vector_2.y - vector_1.y * vector_2.x;
     };
 
-    Math.CrossVF = function(vector, scalar) {
+    Math.CrossVS = function(vector, scalar) {
       if (vector === null || !vector.IsValid() || scalar === null || !this.IsValid(scalar)) {
         throw new TypeError;
       }
       return new box2d.Vector2D(scalar * vector.y, -scalar * vector.x);
     };
 
-    Math.CrossFV = function(scalar, vector) {
+    Math.CrossSV = function(scalar, vector) {
       if (scalar === null || !this.IsValid(scalar) || vector === null || !vector.IsValid()) {
         throw new TypeError;
       }
@@ -63,7 +63,7 @@
       return new box2d.Vector2D(vector_1.x - vector_2.x, vector_1.y - vector_2.y);
     };
 
-    Math.MulFV = function(scalar, vector) {
+    Math.MulSV = function(scalar, vector) {
       return new box2d.Vector2D(scalar * vector.x, scalar * vector.y);
     };
 
