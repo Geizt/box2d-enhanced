@@ -23,7 +23,7 @@
     it('can calculate the dot-product', function() {
       return expect(box2d.Math.Dot(vector2d, another_vector2d)).toBe(23);
     });
-    return it('can calculate the cross-product', function() {
+    it('can calculate the cross-product', function() {
       var cross_sv, cross_vs, cross_vv;
       cross_vv = box2d.Math.CrossVV(vector2d, another_vector2d);
       cross_vs = box2d.Math.CrossVS(vector2d, scalar);
@@ -33,6 +33,36 @@
       expect(cross_vs.y).toBe(-8);
       expect(cross_sv.x).toBe(-20);
       return expect(cross_sv.y).toBe(16);
+    });
+    it('can it multiply a matrix with a vector', function() {
+      var mulmv;
+      mulmv = box2d.Math.MulMV(matrix2x2, vector2d);
+      expect(mulmv.x).toBe(11);
+      return expect(mulmv.y).toBe(16);
+    });
+    it('can it multiply a vector with a matrix', function() {
+      var mulvm;
+      mulvm = box2d.Math.MulVM(vector2d, matrix2x2);
+      expect(mulvm.x).toBe(8);
+      return expect(mulvm.y).toBe(18);
+    });
+    it('can add a vector with a vector', function() {
+      var addvv;
+      addvv = box2d.Math.AddVV(vector2d, another_vector2d);
+      expect(addvv.x).toBe(6);
+      return expect(addvv.y).toBe(8);
+    });
+    it('can subtract a vector from a vector', function() {
+      var subtractvv;
+      subtractvv = box2d.Math.SubtractVV(vector2d, another_vector2d);
+      expect(subtractvv.x).toBe(-2);
+      return expect(subtractvv.y).toBe(-2);
+    });
+    return it('can multiply a vector with a scalar', function() {
+      var mulsv;
+      mulsv = box2d.Math.MulSV(scalar, vector2d);
+      expect(mulsv.x).toBe(8);
+      return expect(mulsv.y).toBe(12);
     });
   });
 
