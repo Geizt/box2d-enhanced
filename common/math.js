@@ -48,11 +48,11 @@
       return new box2d.Vector2D(matrix.column_1.x * vector.x + matrix.column_2.x * vector.y, matrix.column_1.y * vector.x + matrix.column_2.y * vector.y);
     };
 
-    Math.MulTMV = function(matrix, vector) {
+    Math.MulVM = function(vector, matrix) {
       if (matrix === null || !matrix.IsValid() || vector === null || !vector.IsValid()) {
         throw new TypeError;
       }
-      return new box2dVector2D(this.Dot(vector, matrix.column_1), this.Dot(vector, matrix.column_2));
+      return new box2d.Vector2D(this.Dot(vector, matrix.column_1), this.Dot(vector, matrix.column_2));
     };
 
     Math.AddVV = function(vector_1, vector_2) {

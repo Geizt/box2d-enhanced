@@ -35,11 +35,11 @@ class box2d.Math
 
 		return new box2d.Vector2D( matrix.column_1.x * vector.x + matrix.column_2.x * vector.y, matrix.column_1.y * vector.x + matrix.column_2.y * vector.y )
 
-	@MulTMV: ( matrix, vector ) ->
+	@MulVM: ( vector, matrix ) ->
 		if matrix == null or not matrix.IsValid() or vector == null or not vector.IsValid()
 			throw new TypeError
 			
-		return new box2dVector2D( @Dot( vector , matrix.column_1 ), @Dot( vector, matrix.column_2 ) )
+		return new box2d.Vector2D( @Dot( vector , matrix.column_1 ), @Dot( vector, matrix.column_2 ) )
 
 	@AddVV: ( vector_1, vector_2 ) ->
 		return new box2d.Vector2D( vector_1.x + vector_2.x, vector_1.y + vector_2.y )
