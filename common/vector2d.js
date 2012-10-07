@@ -108,7 +108,7 @@
       return this;
     };
 
-    Vector2D.prototype.CrossVF = function(scalar) {
+    Vector2D.prototype.CrossVS = function(scalar) {
       var tX;
       if (scalar === null || !box2d.Math.IsValid(scalar)) {
         throw new TypeError;
@@ -120,7 +120,7 @@
       return this;
     };
 
-    Vector2D.prototype.CrossFV = function(scalar) {
+    Vector2D.prototype.CrossSV = function(scalar) {
       var tX;
       if (scalar === null || !box2d.Math.IsValid(scalar)) {
         throw new TypeError;
@@ -173,12 +173,12 @@
       return this;
     };
 
-    Vector2D.prototype.ToString = function() {
-      return '( ' + this.x + ', ' + this.y + ' )';
+    Vector2D.prototype.toString = function() {
+      return "( " + this.x + ", " + this.y + " )";
     };
 
     Vector2D.prototype.Serialize = function() {
-      return '{ "x": ' + this.x + ', "y": ' + this.y + ' }';
+      return "{ 'x': " + this.x + ", 'y': " + this.y + " }";
     };
 
     return Vector2D;

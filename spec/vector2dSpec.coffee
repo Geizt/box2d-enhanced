@@ -71,13 +71,13 @@ describe 'Vector2D', ->
 		expect( vector2d.y ).toBe 18
 
 	it 'can be a cross product', ->
-		vector2d.CrossVF( 3 )
+		vector2d.CrossVS( 3 )
 
 		expect( vector2d.x ).toBe 9
 		expect( vector2d.y ).toBe -6
 
 		vector2d.Set( 2, 3 )
-		vector2d.CrossFV( 3 )
+		vector2d.CrossSV( 3 )
 
 		expect( vector2d.x ).toBe -9
 		expect( vector2d.y ).toBe 6
@@ -106,12 +106,12 @@ describe 'Vector2D', ->
 
 		expect( result ).toBe 1
 
-	it 'can be a string', ->
-		result = vector2d.ToString()
+	it 'can be converted to a string', ->
+		result = vector2d.toString()
 
 		expect( result ).toBe '( 2, 3 )'
 
 	it 'can be serialized', ->
 		result = vector2d.Serialize()
 
-		expect( result ).toBe '{ "x": 2, "y": 3 }'
+		expect( result ).toBe "{ 'x': 2, 'y': 3 }"

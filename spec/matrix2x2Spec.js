@@ -79,13 +79,23 @@
       expect(solved_vector2d.x).toBe(1.0);
       return expect(solved_vector2d.y).toBe(0.0);
     });
-    return it('can be absolute', function() {
+    it('can be absolute', function() {
       matrix2x2.SetVV(new box2d.Vector2D(-2, 3), new box2d.Vector2D(4, -5));
       matrix2x2.Abs();
       expect(matrix2x2.column_1.x).toBe(2.0);
       expect(matrix2x2.column_1.y).toBe(3.0);
       expect(matrix2x2.column_2.x).toBe(4.0);
       return expect(matrix2x2.column_2.y).toBe(5.0);
+    });
+    it('can be converted to a string', function() {
+      var result;
+      result = matrix2x2.toString();
+      return expect(result).toBe("( ( 1, 3 ),\n   ( 2, 4 ) )");
+    });
+    return it('can be serialized', function() {
+      var result;
+      result = matrix2x2.Serialize();
+      return expect(result).toBe("{ { 'a_11': 1, 'a_12': 3 }, { 'a_21': 2, 'a_22': 4 } }");
     });
   });
 

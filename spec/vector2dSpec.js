@@ -67,11 +67,11 @@
       return expect(vector2d.y).toBe(18);
     });
     it('can be a cross product', function() {
-      vector2d.CrossVF(3);
+      vector2d.CrossVS(3);
       expect(vector2d.x).toBe(9);
       expect(vector2d.y).toBe(-6);
       vector2d.Set(2, 3);
-      vector2d.CrossFV(3);
+      vector2d.CrossSV(3);
       expect(vector2d.x).toBe(-9);
       return expect(vector2d.y).toBe(6);
     });
@@ -96,15 +96,15 @@
       result = vector2d.Normalize().Length();
       return expect(result).toBe(1);
     });
-    it('can be a string', function() {
+    it('can be converted to a string', function() {
       var result;
-      result = vector2d.ToString();
+      result = vector2d.toString();
       return expect(result).toBe('( 2, 3 )');
     });
     return it('can be serialized', function() {
       var result;
       result = vector2d.Serialize();
-      return expect(result).toBe('{ "x": 2, "y": 3 }');
+      return expect(result).toBe("{ 'x': 2, 'y': 3 }");
     });
   });
 

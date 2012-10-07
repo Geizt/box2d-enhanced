@@ -91,7 +91,7 @@ class box2d.Vector2D
 
 		return @
 
-	CrossVF: ( scalar ) ->
+	CrossVS: ( scalar ) ->
 		if scalar == null or not box2d.Math.IsValid( scalar )
 			throw new TypeError
 		else
@@ -102,7 +102,7 @@ class box2d.Vector2D
 
 		return @
 
-	CrossFV: ( scalar ) ->
+	CrossSV: ( scalar ) ->
 		if scalar == null or not box2d.Math.IsValid( scalar )
 			throw new TypeError
 		else
@@ -151,8 +151,8 @@ class box2d.Vector2D
 
 		return @
 
-	ToString: ->
-		return '( ' + @x + ', ' + @y + ' )'
+	toString: ->
+		return "( #{ @x }, #{ @y } )"
 
 	Serialize: ->
-		return '{ "x": ' + @x + ', "y": ' + @y + ' }'
+		return "{ 'x': #{ @x }, 'y': #{ @y } }"

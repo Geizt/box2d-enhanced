@@ -139,6 +139,14 @@
       return this.column_2.Abs();
     };
 
+    Matrix2x2.prototype.toString = function() {
+      return "( ( " + this.column_1.x + ", " + this.column_2.x + " ),\n   ( " + this.column_1.y + ", " + this.column_2.y + " ) )";
+    };
+
+    Matrix2x2.prototype.Serialize = function() {
+      return "{ { 'a_11': " + this.column_1.x + ", 'a_12': " + this.column_2.x + " }, { 'a_21': " + this.column_1.y + ", 'a_22': " + this.column_2.y + " } }";
+    };
+
     return Matrix2x2;
 
   })();

@@ -90,3 +90,13 @@ describe 'Matrix2x2', ->
 		expect( matrix2x2.column_1.y ).toBe 3.0
 		expect( matrix2x2.column_2.x ).toBe 4.0
 		expect( matrix2x2.column_2.y ).toBe 5.0
+
+	it 'can be converted to a string', ->
+		result = matrix2x2.toString()
+
+		expect( result ).toBe "( ( 1, 3 ),\n   ( 2, 4 ) )"
+
+	it 'can be serialized', ->
+		result = matrix2x2.Serialize()
+
+		expect( result ).toBe "{ { 'a_11': 1, 'a_12': 3 }, { 'a_21': 2, 'a_22': 4 } }"

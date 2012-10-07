@@ -119,3 +119,9 @@ class box2d.Matrix2x2
 	Abs: ->
 		@column_1.Abs();
 		@column_2.Abs();
+
+	toString: ->
+		return "( ( #{ @column_1.x }, #{ @column_2.x } ),\n   ( #{ @column_1.y }, #{ @column_2.y } ) )"
+
+	Serialize: ->
+		return "{ { 'a_11': #{ @column_1.x }, 'a_12': #{ @column_2.x } }, { 'a_21': #{ @column_1.y }, 'a_22': #{ @column_2.y } } }"
