@@ -77,9 +77,6 @@ describe 'MathFunc', ->
 	it 'can multiply a matrix with a matrix', ->
 		mulmm = box2d.MathFunc.MulMM( matrix2x2, another_matrix2x2 )
 
-		# 1 3  x  5 7  = 23 31
-		# 2 4     6 8    34 46
-
 		expect( mulmm.column_1.x ).toBe 23
 		expect( mulmm.column_1.y ).toBe 34
 		expect( mulmm.column_2.x ).toBe 31
@@ -87,9 +84,6 @@ describe 'MathFunc', ->
 
 	it 'can multiply a transposed matrix with a matrix', ->
 		multmm = box2d.MathFunc.MulTMM( matrix2x2, another_matrix2x2 )
-
-		# 1 2  x  5 7  = 17 23
-		# 3 4     6 8    39 53
 
 		expect( multmm.column_1.x ).toBe 17
 		expect( multmm.column_1.y ).toBe 39
