@@ -1,7 +1,7 @@
 # Create a namespace to export public methods
 box2d: exports? and exports or @box2d or @box2d = {}
 
-class box2d.Math
+class box2d.MathFunc
 	@IsValid: ( scalar ) ->
 		return isFinite( scalar )
 
@@ -63,10 +63,10 @@ class box2d.Math
 		return if scalar > 0.0 then scalar else -scalar
 
 	@AbsV: ( vector ) ->
-		return new box2d.Vector2D( @Abs(vector.x), @Abs(vector.y ) )
+		return new box2d.Vector2D( @Abs( vector.x ), @Abs( vector.y ) )
 
 	@AbsM: ( matrix ) ->
-		return new box2d.Matrix2x2( @AbsV( matrix.column_1 ), @AbsV( matrix_1.column_2 ) )
+		return new box2d.Matrix2x2( @AbsV( matrix.column_1 ), @AbsV( matrix.column_2 ) )
 
 	@Min: ( scalar_1, scalar_2 ) ->
 		return if scalar_1 < scalar_2 then scalar_1 else scalar_2

@@ -12,7 +12,7 @@
       if (angle == null) {
         angle = 0;
       }
-      if ((vector_1 != null) && !vector_1.IsValid() || (vector_2 != null) && !vector_2.IsValid() || (angle != null) && !box2d.Math.IsValid(angle)) {
+      if ((vector_1 != null) && !vector_1.IsValid() || (vector_2 != null) && !vector_2.IsValid() || (angle != null) && !box2d.MathFunc.IsValid(angle)) {
         throw new TypeError;
       } else {
         this.column_1 = new box2d.Vector2D();
@@ -37,7 +37,7 @@
 
     Matrix2x2.prototype.Set = function(angle) {
       var cosinus, sinus;
-      if (angle === null || !box2d.Math.IsValid(angle)) {
+      if (angle === null || !box2d.MathFunc.IsValid(angle)) {
         throw new TypeError;
       } else {
         cosinus = Math.cos(angle);

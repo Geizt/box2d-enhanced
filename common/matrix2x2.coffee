@@ -3,7 +3,7 @@ box2d: exports? and exports or @box2d or @box2d = {}
 
 class box2d.Matrix2x2
 	constructor: ( vector_1, vector_2, angle = 0 ) ->
-		if vector_1? and not vector_1.IsValid() or vector_2? and not vector_2.IsValid() or angle? and not box2d.Math.IsValid( angle )
+		if vector_1? and not vector_1.IsValid() or vector_2? and not vector_2.IsValid() or angle? and not box2d.MathFunc.IsValid( angle )
 			throw new TypeError
 		else
 			@column_1 = new box2d.Vector2D()
@@ -26,7 +26,7 @@ class box2d.Matrix2x2
 		@column_1 != null and @column_1.IsValid() and @column_2 != null and @column_2.IsValid()
 
 	Set: ( angle ) ->
-		if angle == null or not box2d.Math.IsValid( angle )
+		if angle == null or not box2d.MathFunc.IsValid( angle )
 			throw new TypeError
 		else
 			cosinus = Math.cos( angle )

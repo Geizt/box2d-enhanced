@@ -3,14 +3,14 @@ box2d: exports? and exports or @box2d or @box2d = {}
 
 class box2d.Vector2D
 	constructor: ( x, y ) ->
-		if x? and not box2d.Math.IsValid( x ) or y? and not box2d.Math.IsValid( y )
+		if x? and not box2d.MathFunc.IsValid( x ) or y? and not box2d.MathFunc.IsValid( y )
 			throw new TypeError
 		else
 			@x = x ? 0.0
 			@y = y ? 0.0
 
 	IsValid: ->
-		box2d.Math.IsValid( @.x ) && box2d.Math.IsValid( @.y )
+		box2d.MathFunc.IsValid( @.x ) && box2d.MathFunc.IsValid( @.y )
 
 	SetZero: -> 
 		@x = 0.0
@@ -19,7 +19,7 @@ class box2d.Vector2D
 		return @
 
 	Set: ( x, y ) -> 
-		if not box2d.Math.IsValid( x ) or not box2d.Math.IsValid( y )
+		if not box2d.MathFunc.IsValid( x ) or not box2d.MathFunc.IsValid( y )
 			throw new TypeError
 		else
 			@x = x
@@ -61,7 +61,7 @@ class box2d.Vector2D
 		return @
 
 	Multiply: ( scalar ) ->
-		if scalar == null or not box2d.Math.IsValid( scalar )
+		if scalar == null or not box2d.MathFunc.IsValid( scalar )
 			throw new TypeError
 		else
 			@x *= scalar
@@ -84,15 +84,15 @@ class box2d.Vector2D
 		if matrix == null or not matrix.IsValid()
 			throw new TypeError
 		else
-			tX = box2d.Math.Dot( @, matrix.column_1 )
+			tX = box2d.MathFunc.Dot( @, matrix.column_1 )
 
-			@.y = box2d.Math.Dot( @, matrix.column_2 );
+			@.y = box2d.MathFunc.Dot( @, matrix.column_2 );
 			@.x = tX;
 
 		return @
 
 	CrossVS: ( scalar ) ->
-		if scalar == null or not box2d.Math.IsValid( scalar )
+		if scalar == null or not box2d.MathFunc.IsValid( scalar )
 			throw new TypeError
 		else
 			tX = @.x
@@ -103,7 +103,7 @@ class box2d.Vector2D
 		return @
 
 	CrossSV: ( scalar ) ->
-		if scalar == null or not box2d.Math.IsValid( scalar )
+		if scalar == null or not box2d.MathFunc.IsValid( scalar )
 			throw new TypeError
 		else
 			tX = @.x

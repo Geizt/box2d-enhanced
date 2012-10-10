@@ -5,81 +5,81 @@
     box2d: (typeof exports !== "undefined" && exports !== null) && exports || this.box2d || (this.box2d = {})
   });
 
-  box2d.Math = (function() {
+  box2d.MathFunc = (function() {
 
-    function Math() {}
+    function MathFunc() {}
 
-    Math.IsValid = function(scalar) {
+    MathFunc.IsValid = function(scalar) {
       return isFinite(scalar);
     };
 
-    Math.Dot = function(vector_1, vector_2) {
+    MathFunc.Dot = function(vector_1, vector_2) {
       if (vector_1 === null || !vector_1.IsValid() || vector_2 === null || !vector_2.IsValid()) {
         throw new TypeError;
       }
       return vector_1.x * vector_2.x + vector_1.y * vector_2.y;
     };
 
-    Math.CrossVV = function(vector_1, vector_2) {
+    MathFunc.CrossVV = function(vector_1, vector_2) {
       if (vector_1 === null || !vector_1.IsValid() || vector_2 === null || !vector_2.IsValid()) {
         throw new TypeError;
       }
       return vector_1.x * vector_2.y - vector_1.y * vector_2.x;
     };
 
-    Math.CrossVS = function(vector, scalar) {
+    MathFunc.CrossVS = function(vector, scalar) {
       if (vector === null || !vector.IsValid() || scalar === null || !this.IsValid(scalar)) {
         throw new TypeError;
       }
       return new box2d.Vector2D(scalar * vector.y, -scalar * vector.x);
     };
 
-    Math.CrossSV = function(scalar, vector) {
+    MathFunc.CrossSV = function(scalar, vector) {
       if (scalar === null || !this.IsValid(scalar) || vector === null || !vector.IsValid()) {
         throw new TypeError;
       }
       return new box2d.Vector2D(-scalar * vector.y, scalar * vector.x);
     };
 
-    Math.MulMV = function(matrix, vector) {
+    MathFunc.MulMV = function(matrix, vector) {
       if (matrix === null || !matrix.IsValid() || vector === null || !vector.IsValid()) {
         throw new TypeError;
       }
       return new box2d.Vector2D(matrix.column_1.x * vector.x + matrix.column_2.x * vector.y, matrix.column_1.y * vector.x + matrix.column_2.y * vector.y);
     };
 
-    Math.MulVM = function(vector, matrix) {
+    MathFunc.MulVM = function(vector, matrix) {
       if (matrix === null || !matrix.IsValid() || vector === null || !vector.IsValid()) {
         throw new TypeError;
       }
       return new box2d.Vector2D(this.Dot(vector, matrix.column_1), this.Dot(vector, matrix.column_2));
     };
 
-    Math.AddVV = function(vector_1, vector_2) {
+    MathFunc.AddVV = function(vector_1, vector_2) {
       return new box2d.Vector2D(vector_1.x + vector_2.x, vector_1.y + vector_2.y);
     };
 
-    Math.SubtractVV = function(vector_1, vector_2) {
+    MathFunc.SubtractVV = function(vector_1, vector_2) {
       return new box2d.Vector2D(vector_1.x - vector_2.x, vector_1.y - vector_2.y);
     };
 
-    Math.MulSV = function(scalar, vector) {
+    MathFunc.MulSV = function(scalar, vector) {
       return new box2d.Vector2D(scalar * vector.x, scalar * vector.y);
     };
 
-    Math.AddMM = function(matrix_1, matrix_2) {
+    MathFunc.AddMM = function(matrix_1, matrix_2) {
       return new box2d.Matrix2x2(this.AddVV(matrix_1.column_1, matrix_2.column_1), this.AddVV(matrix_1.column_2, matrix_2.column_2));
     };
 
-    Math.MulMM = function(matrix_1, matrix_2) {
+    MathFunc.MulMM = function(matrix_1, matrix_2) {
       return new box2d.Matrix2x2(this.MulMV(matrix_1, matrix_2.column_1), this.MulMV(matrix_1, matrix_2.column_2));
     };
 
-    Math.MulTMM = function(matrix_1, matrix_2) {
+    MathFunc.MulTMM = function(matrix_1, matrix_2) {
       return new box2d.Matrix2x2(new box2d.Vector2D(this.Dot(matrix_1.column_1, matrix_2.column_1), this.Dot(matrix_1.column_2, matrix_2.column_1)), new box2d.Vector2D(this.Dot(matrix_1.column_1, matrix_2.column_2), this.Dot(matrix_1.column_2, matrix_2.column_2)));
     };
 
-    Math.Abs = function(scalar) {
+    MathFunc.Abs = function(scalar) {
       if (scalar > 0.0) {
         return scalar;
       } else {
@@ -87,15 +87,15 @@
       }
     };
 
-    Math.AbsV = function(vector) {
+    MathFunc.AbsV = function(vector) {
       return new box2d.Vector2D(this.Abs(vector.x), this.Abs(vector.y));
     };
 
-    Math.AbsM = function(matrix) {
-      return new box2d.Matrix2x2(this.AbsV(matrix.column_1), this.AbsV(matrix_1.column_2));
+    MathFunc.AbsM = function(matrix) {
+      return new box2d.Matrix2x2(this.AbsV(matrix.column_1), this.AbsV(matrix.column_2));
     };
 
-    Math.Min = function(scalar_1, scalar_2) {
+    MathFunc.Min = function(scalar_1, scalar_2) {
       if (scalar_1 < scalar_2) {
         return scalar_1;
       } else {
@@ -103,11 +103,11 @@
       }
     };
 
-    Math.MinV = function(vector_1, vector_2) {
+    MathFunc.MinV = function(vector_1, vector_2) {
       return new box2d.Vector2D(this.Min(vector_1.x, vector_2.x), this.Min(vector_1.y, vector_2.y));
     };
 
-    Math.Max = function(scalar_1, scalar_2) {
+    MathFunc.Max = function(scalar_1, scalar_2) {
       if (scalar_1 > scalar_2) {
         return scalar_1;
       } else {
@@ -115,28 +115,28 @@
       }
     };
 
-    Math.MaxV = function(vector_1, vector_2) {
+    MathFunc.MaxV = function(vector_1, vector_2) {
       return new box2d.Vector2D(this.Max(vector_1.x, vector_2.x), this.Max(vector_1.y, vector_2.y));
     };
 
-    Math.Clamp = function(scalar, lower_limit, upper_limit) {
+    MathFunc.Clamp = function(scalar, lower_limit, upper_limit) {
       return this.Max(lower_limit, this.Min(scalar, upper_limit));
     };
 
-    Math.ClampV = function(vector, lower_limit, upper_limit) {
+    MathFunc.ClampV = function(vector, lower_limit, upper_limit) {
       return this.MaxV(lower_limit, this.MinV(vector, upper_limit));
     };
 
-    Math.Swap = function(array_1, array_2) {
+    MathFunc.Swap = function(array_1, array_2) {
       var _ref;
       _ref = [array_2[0], array_1[0]], array_1[0] = _ref[0], array_2[0] = _ref[1];
     };
 
-    Math.Random = function() {
+    MathFunc.Random = function() {
       return Math.random() * 2 - 1;
     };
 
-    Math.NextPowerOfTwo = function(x) {
+    MathFunc.NextPowerOfTwo = function(x) {
       x |= (x >> 1) & 0x7FFFFFFF;
       x |= (x >> 2) & 0x3FFFFFFF;
       x |= (x >> 4) & 0x0FFFFFFF;
@@ -145,11 +145,11 @@
       return x + 1;
     };
 
-    Math.IsPowerOfTwo = function(x) {
+    MathFunc.IsPowerOfTwo = function(x) {
       return x > 0 && (x & (x - 1)) === 0;
     };
 
-    return Math;
+    return MathFunc;
 
   })();
 
