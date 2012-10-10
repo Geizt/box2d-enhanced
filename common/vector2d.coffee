@@ -19,7 +19,7 @@ class box2d.Vector2D
 		return @
 
 	Set: ( x, y ) -> 
-		if not box2d.MathFunc.IsValid( x ) or not box2d.MathFunc.IsValid( y )
+		if not x? or not box2d.MathFunc.IsValid( x ) or not y? or not box2d.MathFunc.IsValid( y )
 			throw new TypeError
 		else
 			@x = x
@@ -28,11 +28,14 @@ class box2d.Vector2D
 		return @
 
 	SetV: ( vector ) -> 
-		if vector == null or not vector.IsValid()
-			throw new TypeError
+		if vector? 
+			if not vector.IsValid?()
+				throw new TypeError
 		else
-			@x = vector.x
-			@y = vector.y
+			throw new TypeError
+
+		@x = vector.x
+		@y = vector.y
 
 		return @
 
@@ -43,25 +46,31 @@ class box2d.Vector2D
 		new box2d.Vector2D( @x, @y )
 
 	Add: ( vector ) ->
-		if vector == null or not vector.IsValid()
-			throw new TypeError
+		if vector? 
+			if not vector.IsValid?()
+				throw new TypeError
 		else
-			@x += vector.x
-			@y += vector.y
+			throw new TypeError
+		
+		@x += vector.x
+		@y += vector.y
 
 		return @
 
 	Subtract: ( vector ) ->
-		if vector == null or not vector.IsValid()
-			throw new TypeError
+		if vector? 
+			if not vector.IsValid?()
+				throw new TypeError
 		else
-			@x -= vector.x
-			@y -= vector.y
+			throw new TypeError
+
+		@x -= vector.x
+		@y -= vector.y
 
 		return @
 
 	Multiply: ( scalar ) ->
-		if scalar == null or not box2d.MathFunc.IsValid( scalar )
+		if not scalar? or not box2d.MathFunc.IsValid( scalar )
 			throw new TypeError
 		else
 			@x *= scalar
@@ -70,29 +79,35 @@ class box2d.Vector2D
 		return @
 
 	MulM: ( matrix ) ->
-		if matrix == null or not matrix.IsValid()
-			throw new TypeError
+		if matrix?
+			if not matrix.IsValid?()
+				throw new TypeError
 		else
-			tX = @.x;
+			throw new TypeError
 
-			@.x = matrix.column_1.x * tX + matrix.column_2.x * @.y;
-			@.y = matrix.column_1.y * tX + matrix.column_2.y * @.y;
+		tX = @.x;
+
+		@.x = matrix.column_1.x * tX + matrix.column_2.x * @.y;
+		@.y = matrix.column_1.y * tX + matrix.column_2.y * @.y;
 
 		return @
 	
 	MulTM: ( matrix ) ->
-		if matrix == null or not matrix.IsValid()
-			throw new TypeError
+		if matrix?
+			if not matrix.IsValid?()
+				throw new TypeError
 		else
-			tX = box2d.MathFunc.Dot( @, matrix.column_1 )
+			throw new TypeError
 
-			@.y = box2d.MathFunc.Dot( @, matrix.column_2 );
-			@.x = tX;
+		tX = box2d.MathFunc.Dot( @, matrix.column_1 )
+
+		@.y = box2d.MathFunc.Dot( @, matrix.column_2 );
+		@.x = tX;
 
 		return @
 
 	CrossVS: ( scalar ) ->
-		if scalar == null or not box2d.MathFunc.IsValid( scalar )
+		if not scalar? or not box2d.MathFunc.IsValid( scalar )
 			throw new TypeError
 		else
 			tX = @.x
@@ -103,7 +118,7 @@ class box2d.Vector2D
 		return @
 
 	CrossSV: ( scalar ) ->
-		if scalar == null or not box2d.MathFunc.IsValid( scalar )
+		if not scalar? or not box2d.MathFunc.IsValid( scalar )
 			throw new TypeError
 		else
 			tX = @.x
@@ -114,20 +129,28 @@ class box2d.Vector2D
 		return @
 
 	MinV: ( vector ) ->
-		if vector == null or not vector.IsValid()
-			throw new TypeError
+		if vector? 
+			if not vector.IsValid?()
+				throw new TypeError
 		else
-			@.x = if @.x < vector.x then @.x else vector.x
-			@.y = if @.y < vector.y then @.y else vector.y
+			throw new TypeError
+
+		@.x = if @.x < vector.x then @.x else vector.x
+		@.y = if @.y < vector.y then @.y else vector.y
 
 		return @
 	
 	MaxV: ( vector ) ->
-		if vector == null or not vector.IsValid()
-			throw new TypeError
+		if vector? 
+			if not vector.IsValid?()
+				throw new TypeError
 		else
-			@.x = if @.x > vector.x then @.x else vector.x
-			@.y = if @.y > vector.y then @.y else vector.y
+			throw new TypeError
+
+		@.x = if @.x > vector.x then @.x else vector.x
+		@.y = if @.y > vector.y then @.y else vector.y
+
+		return @
 
 	Abs: ->
 		@.x = Math.abs( @.x )

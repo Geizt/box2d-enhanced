@@ -27,7 +27,7 @@
     };
 
     Vector2D.prototype.Set = function(x, y) {
-      if (!box2d.MathFunc.IsValid(x) || !box2d.MathFunc.IsValid(y)) {
+      if (!(x != null) || !box2d.MathFunc.IsValid(x) || !(y != null) || !box2d.MathFunc.IsValid(y)) {
         throw new TypeError;
       } else {
         this.x = x;
@@ -37,12 +37,15 @@
     };
 
     Vector2D.prototype.SetV = function(vector) {
-      if (vector === null || !vector.IsValid()) {
-        throw new TypeError;
+      if (vector != null) {
+        if (!(typeof vector.IsValid === "function" ? vector.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        this.x = vector.x;
-        this.y = vector.y;
+        throw new TypeError;
       }
+      this.x = vector.x;
+      this.y = vector.y;
       return this;
     };
 
@@ -55,27 +58,33 @@
     };
 
     Vector2D.prototype.Add = function(vector) {
-      if (vector === null || !vector.IsValid()) {
-        throw new TypeError;
+      if (vector != null) {
+        if (!(typeof vector.IsValid === "function" ? vector.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        this.x += vector.x;
-        this.y += vector.y;
+        throw new TypeError;
       }
+      this.x += vector.x;
+      this.y += vector.y;
       return this;
     };
 
     Vector2D.prototype.Subtract = function(vector) {
-      if (vector === null || !vector.IsValid()) {
-        throw new TypeError;
+      if (vector != null) {
+        if (!(typeof vector.IsValid === "function" ? vector.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        this.x -= vector.x;
-        this.y -= vector.y;
+        throw new TypeError;
       }
+      this.x -= vector.x;
+      this.y -= vector.y;
       return this;
     };
 
     Vector2D.prototype.Multiply = function(scalar) {
-      if (scalar === null || !box2d.MathFunc.IsValid(scalar)) {
+      if (!(scalar != null) || !box2d.MathFunc.IsValid(scalar)) {
         throw new TypeError;
       } else {
         this.x *= scalar;
@@ -86,31 +95,37 @@
 
     Vector2D.prototype.MulM = function(matrix) {
       var tX;
-      if (matrix === null || !matrix.IsValid()) {
-        throw new TypeError;
+      if (matrix != null) {
+        if (!(typeof matrix.IsValid === "function" ? matrix.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        tX = this.x;
-        this.x = matrix.column_1.x * tX + matrix.column_2.x * this.y;
-        this.y = matrix.column_1.y * tX + matrix.column_2.y * this.y;
+        throw new TypeError;
       }
+      tX = this.x;
+      this.x = matrix.column_1.x * tX + matrix.column_2.x * this.y;
+      this.y = matrix.column_1.y * tX + matrix.column_2.y * this.y;
       return this;
     };
 
     Vector2D.prototype.MulTM = function(matrix) {
       var tX;
-      if (matrix === null || !matrix.IsValid()) {
-        throw new TypeError;
+      if (matrix != null) {
+        if (!(typeof matrix.IsValid === "function" ? matrix.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        tX = box2d.MathFunc.Dot(this, matrix.column_1);
-        this.y = box2d.MathFunc.Dot(this, matrix.column_2);
-        this.x = tX;
+        throw new TypeError;
       }
+      tX = box2d.MathFunc.Dot(this, matrix.column_1);
+      this.y = box2d.MathFunc.Dot(this, matrix.column_2);
+      this.x = tX;
       return this;
     };
 
     Vector2D.prototype.CrossVS = function(scalar) {
       var tX;
-      if (scalar === null || !box2d.MathFunc.IsValid(scalar)) {
+      if (!(scalar != null) || !box2d.MathFunc.IsValid(scalar)) {
         throw new TypeError;
       } else {
         tX = this.x;
@@ -122,7 +137,7 @@
 
     Vector2D.prototype.CrossSV = function(scalar) {
       var tX;
-      if (scalar === null || !box2d.MathFunc.IsValid(scalar)) {
+      if (!(scalar != null) || !box2d.MathFunc.IsValid(scalar)) {
         throw new TypeError;
       } else {
         tX = this.x;
@@ -133,22 +148,29 @@
     };
 
     Vector2D.prototype.MinV = function(vector) {
-      if (vector === null || !vector.IsValid()) {
-        throw new TypeError;
+      if (vector != null) {
+        if (!(typeof vector.IsValid === "function" ? vector.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        this.x = this.x < vector.x ? this.x : vector.x;
-        this.y = this.y < vector.y ? this.y : vector.y;
+        throw new TypeError;
       }
+      this.x = this.x < vector.x ? this.x : vector.x;
+      this.y = this.y < vector.y ? this.y : vector.y;
       return this;
     };
 
     Vector2D.prototype.MaxV = function(vector) {
-      if (vector === null || !vector.IsValid()) {
-        throw new TypeError;
+      if (vector != null) {
+        if (!(typeof vector.IsValid === "function" ? vector.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        this.x = this.x > vector.x ? this.x : vector.x;
-        return this.y = this.y > vector.y ? this.y : vector.y;
+        throw new TypeError;
       }
+      this.x = this.x > vector.x ? this.x : vector.x;
+      this.y = this.y > vector.y ? this.y : vector.y;
+      return this;
     };
 
     Vector2D.prototype.Abs = function() {

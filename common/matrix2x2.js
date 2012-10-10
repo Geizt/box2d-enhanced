@@ -12,32 +12,43 @@
       if (angle == null) {
         angle = 0;
       }
-      if ((vector_1 != null) && !vector_1.IsValid() || (vector_2 != null) && !vector_2.IsValid() || (angle != null) && !box2d.MathFunc.IsValid(angle)) {
-        throw new TypeError;
-      } else {
-        this.column_1 = new box2d.Vector2D();
-        this.column_2 = new box2d.Vector2D();
-        if (vector_1 !== null && vector_2 !== null) {
-          this.column_1.SetV(vector_1);
-          this.column_2.SetV(vector_2);
-        } else {
-          cosinus = Math.cos(angle);
-          sinus = Math.sin(angle);
-          this.column_1.x = cosinus;
-          this.column_1.y = sinus;
-          this.column_2.x = -sinus;
-          this.column_2.y = cosinus;
+      if (vector_1 != null) {
+        if (!(typeof vector_1.IsValid === "function" ? vector_1.IsValid() : void 0)) {
+          throw new TypeError;
         }
+      }
+      if (vector_2 != null) {
+        if (!(typeof vector_2.IsValid === "function" ? vector_2.IsValid() : void 0)) {
+          throw new TypeError;
+        }
+      }
+      if (angle != null) {
+        if (!box2d.MathFunc.IsValid(angle)) {
+          throw new TypeError;
+        }
+      }
+      this.column_1 = new box2d.Vector2D();
+      this.column_2 = new box2d.Vector2D();
+      if ((vector_1 != null) && (vector_2 != null)) {
+        this.column_1.SetV(vector_1);
+        this.column_2.SetV(vector_2);
+      } else {
+        cosinus = Math.cos(angle);
+        sinus = Math.sin(angle);
+        this.column_1.x = cosinus;
+        this.column_1.y = sinus;
+        this.column_2.x = -sinus;
+        this.column_2.y = cosinus;
       }
     }
 
     Matrix2x2.prototype.IsValid = function() {
-      return this.column_1 !== null && this.column_1.IsValid() && this.column_2 !== null && this.column_2.IsValid();
+      return (this.column_1 != null) && this.column_1.IsValid() && (this.column_2 != null) && this.column_2.IsValid();
     };
 
     Matrix2x2.prototype.Set = function(angle) {
       var cosinus, sinus;
-      if (angle === null || !box2d.MathFunc.IsValid(angle)) {
+      if (!(angle != null) || !box2d.MathFunc.IsValid(angle)) {
         throw new TypeError;
       } else {
         cosinus = Math.cos(angle);
@@ -51,7 +62,7 @@
     };
 
     Matrix2x2.prototype.SetVV = function(vector_1, vector_2) {
-      if (vector_1 === null || !vector_1.IsValid() || vector_2 === null || !vector_2.IsValid()) {
+      if (!(vector_1 != null) || !vector_1.IsValid() || !(vector_2 != null) || !vector_2.IsValid()) {
         throw new TypeError;
       } else {
         this.column_1.SetV(vector_1);
@@ -61,12 +72,16 @@
     };
 
     Matrix2x2.prototype.SetM = function(matrix) {
-      if (!matrix.IsValid()) {
-        throw new TypeError;
+      if (matrix != null) {
+        if (!(typeof matrix.IsValid === "function" ? matrix.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        this.column_1.SetV(matrix.column_1);
-        return this.column_2.SetV(matrix.column_2);
+        throw new TypeError;
       }
+      this.column_1.SetV(matrix.column_1);
+      this.column_2.SetV(matrix.column_2);
+      return this;
     };
 
     Matrix2x2.prototype.Copy = function() {
@@ -74,69 +89,88 @@
     };
 
     Matrix2x2.prototype.AddM = function(matrix) {
-      if (!matrix.IsValid()) {
-        throw new TypeError;
+      if (matrix != null) {
+        if (!(typeof matrix.IsValid === "function" ? matrix.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        this.column_1.x += matrix.column_1.x;
-        this.column_1.y += matrix.column_1.y;
-        this.column_2.x += matrix.column_2.x;
-        return this.column_2.y += matrix.column_2.y;
+        throw new TypeError;
       }
+      this.column_1.x += matrix.column_1.x;
+      this.column_1.y += matrix.column_1.y;
+      this.column_2.x += matrix.column_2.x;
+      this.column_2.y += matrix.column_2.y;
+      return this;
     };
 
     Matrix2x2.prototype.SetIdentity = function() {
       this.column_1.x = 1.0;
       this.column_1.y = 0.0;
       this.column_2.x = 0.0;
-      return this.column_2.y = 1.0;
+      this.column_2.y = 1.0;
+      return this;
     };
 
     Matrix2x2.prototype.SetZero = function() {
       this.column_1.x = 0.0;
       this.column_1.y = 0.0;
       this.column_2.x = 0.0;
-      return this.column_2.y = 0.0;
+      this.column_2.y = 0.0;
+      return this;
     };
 
     Matrix2x2.prototype.Invert = function(matrix) {
       var a_11, a_12, a_21, a_22, det;
-      if (!matrix.IsValid()) {
-        throw new TypeError;
+      if (matrix != null) {
+        if (!(typeof matrix.IsValid === "function" ? matrix.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        a_11 = this.column_1.x;
-        a_12 = this.column_2.x;
-        a_21 = this.column_1.y;
-        a_22 = this.column_2.y;
-        det = a_11 * a_22 - a_12 * a_21;
-        det = 1.0 / det;
-        matrix.column_1.x = det * a_22;
-        matrix.column_1.y = -det * a_21;
-        matrix.column_2.x = -det * a_12;
-        matrix.column_2.y = det * a_11;
+        throw new TypeError;
       }
+      a_11 = this.column_1.x;
+      a_12 = this.column_2.x;
+      a_21 = this.column_1.y;
+      a_22 = this.column_2.y;
+      det = a_11 * a_22 - a_12 * a_21;
+      det = 1.0 / det;
+      matrix.column_1.x = det * a_22;
+      matrix.column_1.y = -det * a_21;
+      matrix.column_2.x = -det * a_12;
+      matrix.column_2.y = det * a_11;
       return matrix;
     };
 
     Matrix2x2.prototype.Solve = function(vector, bX, bY) {
       var a_11, a_12, a_21, a_22, det;
-      if (!vector.IsValid()) {
-        throw new TypeError;
+      if (vector != null) {
+        if (!(typeof vector.IsValid === "function" ? vector.IsValid() : void 0)) {
+          throw new TypeError;
+        }
       } else {
-        a_11 = this.column_1.x;
-        a_12 = this.column_2.x;
-        a_21 = this.column_1.y;
-        a_22 = this.column_2.y;
-        det = a_11 * a_22 - a_12 * a_21;
-        det = 1.0 / det;
-        vector.x = det * (a_22 * bX - a_12 * bY);
-        vector.y = det * (a_11 * bY - a_21 * bX);
+        throw new TypeError;
       }
+      if (!(bX != null) || !box2d.MathFunc.IsValid(bX)) {
+        throw new TypeError;
+      }
+      if (!(bY != null) || !box2d.MathFunc.IsValid(bY)) {
+        throw new TypeError;
+      }
+      a_11 = this.column_1.x;
+      a_12 = this.column_2.x;
+      a_21 = this.column_1.y;
+      a_22 = this.column_2.y;
+      det = a_11 * a_22 - a_12 * a_21;
+      det = 1.0 / det;
+      vector.x = det * (a_22 * bX - a_12 * bY);
+      vector.y = det * (a_11 * bY - a_21 * bX);
       return vector;
     };
 
     Matrix2x2.prototype.Abs = function() {
       this.column_1.Abs();
-      return this.column_2.Abs();
+      this.column_2.Abs();
+      return this;
     };
 
     Matrix2x2.prototype.toString = function() {
