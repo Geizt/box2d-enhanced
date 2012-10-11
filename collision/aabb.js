@@ -20,8 +20,10 @@
       }
       this.minVertex = new box2d.Vector2D();
       this.maxVertex = new box2d.Vector2D();
-      this.minVertex.SetV(minVertex);
-      this.maxVertex.SetV(maxVertex);
+      if ((minVertex != null) && (maxVertex != null)) {
+        this.minVertex.SetV(minVertex);
+        this.maxVertex.SetV(maxVertex);
+      }
     }
 
     AABB.prototype.IsValid = function() {

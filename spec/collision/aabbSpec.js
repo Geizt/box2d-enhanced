@@ -16,15 +16,22 @@
       aabb = new box2d.AABB(vector2d, another_vector2d);
     });
     it('can be initialized', function() {
+      var another_aabb;
+      another_aabb = new box2d.AABB();
       expect(aabb.minVertex.x).toBe(2);
       expect(aabb.minVertex.y).toBe(3);
       expect(aabb.maxVertex.x).toBe(4);
-      return expect(aabb.maxVertex.y).toBe(5);
+      expect(aabb.maxVertex.y).toBe(5);
+      expect(another_aabb.minVertex.x).toBe(0);
+      expect(another_aabb.minVertex.y).toBe(0);
+      expect(another_aabb.maxVertex.x).toBe(0);
+      return expect(another_aabb.maxVertex.y).toBe(0);
     });
     return it('can be validated', function() {
-      var valid_aabb;
-      valid_aabb = aabb.IsValid();
-      return expect(valid_aabb).toBe(true);
+      var another_aabb;
+      another_aabb = new box2d.AABB(another_vector2d, vector2d);
+      expect(aabb.IsValid()).toBe(true);
+      return expect(another_aabb.IsValid()).toBe(false);
     });
   });
 

@@ -9,16 +9,17 @@ describe 'MathFunc', ->
 	another_matrix2x2 = null
 
 	beforeEach ->
-		scalar = 4
-		vector2d = new box2d.Vector2D( 2, 3 )
-		another_vector2d = new box2d.Vector2D( 4, 5 )
-		matrix2x2 = new box2d.Matrix2x2( new box2d.Vector2D( 1, 2 ), new box2d.Vector2D( 3, 4 ) )
-		another_matrix2x2 = new box2d.Matrix2x2( new box2d.Vector2D( 5, 6 ), new box2d.Vector2D( 7, 8 ) )
+		scalar = 4.0
+		vector2d = new box2d.Vector2D( 2.0, 3.0 )
+		another_vector2d = new box2d.Vector2D( 4.0, 5.0 )
+		matrix2x2 = new box2d.Matrix2x2( new box2d.Vector2D( 1.0, 2.0 ), new box2d.Vector2D( 3.0, 4.0 ) )
+		another_matrix2x2 = new box2d.Matrix2x2( new box2d.Vector2D( 5.0, 6.0 ), new box2d.Vector2D( 7.0, 8.0 ) )
 
 		return
 
 	it 'can validate a scalar', ->
 		expect( box2d.MathFunc.IsValid( scalar ) ).toBe true
+		expect( box2d.MathFunc.IsValid( 'a' ) ).toBe false
 
 	it 'can calculate the dot-product', ->
 		expect( box2d.MathFunc.Dot( vector2d, another_vector2d ) ).toBe 23
@@ -158,6 +159,9 @@ describe 'MathFunc', ->
 
 		array_1[0] = 1
 		array_2[0] = 2
+
+		expect( array_1[0] ).toBe 1
+		expect( array_2[0] ).toBe 2
 
 		box2d.MathFunc.Swap( array_1, array_2 )
 

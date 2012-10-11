@@ -14,13 +14,22 @@ describe 'AABB', ->
 		return
 
 	it 'can be initialized', ->
+		another_aabb = new box2d.AABB()
+
 		expect( aabb.minVertex.x ).toBe 2
 		expect( aabb.minVertex.y ).toBe 3
 
 		expect( aabb.maxVertex.x ).toBe 4
 		expect( aabb.maxVertex.y ).toBe 5
 
-	it 'can be validated', ->
-		valid_aabb = aabb.IsValid();
+		expect( another_aabb.minVertex.x ).toBe 0
+		expect( another_aabb.minVertex.y ).toBe 0
 
-		expect( valid_aabb ).toBe true
+		expect( another_aabb.maxVertex.x ).toBe 0
+		expect( another_aabb.maxVertex.y ).toBe 0
+
+	it 'can be validated', ->
+		another_aabb = new box2d.AABB( another_vector2d, vector2d )
+
+		expect( aabb.IsValid() ).toBe true
+		expect( another_aabb.IsValid() ).toBe false

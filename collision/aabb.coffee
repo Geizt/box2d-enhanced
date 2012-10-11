@@ -14,8 +14,9 @@ class box2d.AABB
 		@minVertex = new box2d.Vector2D()
 		@maxVertex = new box2d.Vector2D()
 
-		@minVertex.SetV( minVertex )
-		@maxVertex.SetV( maxVertex )
+		if minVertex? and maxVertex?
+			@minVertex.SetV( minVertex )
+			@maxVertex.SetV( maxVertex )
 
 	IsValid: ->
 		dX = @maxVertex.x
