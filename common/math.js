@@ -14,42 +14,42 @@
     };
 
     MathFunc.Dot = function(vector_1, vector_2) {
-      if (vector_1 === null || !vector_1.IsValid() || vector_2 === null || !vector_2.IsValid()) {
+      if (!(vector_1 != null) || !vector_1.IsValid() || !(vector_2 != null) || !vector_2.IsValid()) {
         throw new TypeError;
       }
       return vector_1.x * vector_2.x + vector_1.y * vector_2.y;
     };
 
     MathFunc.CrossVV = function(vector_1, vector_2) {
-      if (vector_1 === null || !vector_1.IsValid() || vector_2 === null || !vector_2.IsValid()) {
+      if (!(vector_1 != null) || !vector_1.IsValid() || !(vector_2 != null) || !vector_2.IsValid()) {
         throw new TypeError;
       }
       return vector_1.x * vector_2.y - vector_1.y * vector_2.x;
     };
 
     MathFunc.CrossVS = function(vector, scalar) {
-      if (vector === null || !vector.IsValid() || scalar === null || !this.IsValid(scalar)) {
+      if (!(vector != null) || !vector.IsValid() || !(scalar != null) || !this.IsValid(scalar)) {
         throw new TypeError;
       }
       return new box2d.Vector2D(scalar * vector.y, -scalar * vector.x);
     };
 
     MathFunc.CrossSV = function(scalar, vector) {
-      if (scalar === null || !this.IsValid(scalar) || vector === null || !vector.IsValid()) {
+      if (!(scalar != null) || !this.IsValid(scalar) || !(vector != null) || !vector.IsValid()) {
         throw new TypeError;
       }
       return new box2d.Vector2D(-scalar * vector.y, scalar * vector.x);
     };
 
     MathFunc.MulMV = function(matrix, vector) {
-      if (matrix === null || !matrix.IsValid() || vector === null || !vector.IsValid()) {
+      if (!(matrix != null) || !matrix.IsValid() || !(vector != null) || !vector.IsValid()) {
         throw new TypeError;
       }
       return new box2d.Vector2D(matrix.column_1.x * vector.x + matrix.column_2.x * vector.y, matrix.column_1.y * vector.x + matrix.column_2.y * vector.y);
     };
 
     MathFunc.MulVM = function(vector, matrix) {
-      if (matrix === null || !matrix.IsValid() || vector === null || !vector.IsValid()) {
+      if (!(matrix != null) || !matrix.IsValid() || !(vector != null) || !vector.IsValid()) {
         throw new TypeError;
       }
       return new box2d.Vector2D(this.Dot(vector, matrix.column_1), this.Dot(vector, matrix.column_2));

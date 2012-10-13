@@ -6,37 +6,37 @@ class box2d.MathFunc
 		return isFinite( scalar )
 
 	@Dot: ( vector_1, vector_2 ) ->
-		if vector_1 == null or not vector_1.IsValid() or vector_2 == null or not vector_2.IsValid()
+		if not vector_1? or not vector_1.IsValid() or not vector_2? or not vector_2.IsValid()
 			throw new TypeError
 		
 		return vector_1.x * vector_2.x + vector_1.y * vector_2.y
 	
 	@CrossVV: ( vector_1, vector_2 ) ->
-		if vector_1 == null or not vector_1.IsValid() or vector_2 == null or not vector_2.IsValid()
+		if not vector_1? or not vector_1.IsValid() or not vector_2? or not vector_2.IsValid()
 			throw new TypeError
 
 		return vector_1.x * vector_2.y - vector_1.y * vector_2.x
 
 	@CrossVS: ( vector, scalar ) ->
-		if vector == null or not vector.IsValid() or scalar == null or not @IsValid( scalar )
+		if not vector? or not vector.IsValid() or not scalar? or not @IsValid( scalar )
 			throw new TypeError
 
 		return new box2d.Vector2D( scalar * vector.y, -scalar * vector.x )
 	
 	@CrossSV: ( scalar, vector ) ->
-		if scalar == null or not @IsValid( scalar ) or vector == null or not vector.IsValid()
+		if not scalar? or not @IsValid( scalar ) or not vector? or not vector.IsValid()
 			throw new TypeError
 
 		return new box2d.Vector2D( -scalar * vector.y, scalar * vector.x )
 
 	@MulMV: ( matrix, vector ) ->
-		if matrix == null or not matrix.IsValid() or vector == null or not vector.IsValid()
+		if not matrix? or not matrix.IsValid() or not vector? or not vector.IsValid()
 			throw new TypeError
 
 		return new box2d.Vector2D( matrix.column_1.x * vector.x + matrix.column_2.x * vector.y, matrix.column_1.y * vector.x + matrix.column_2.y * vector.y )
 
 	@MulVM: ( vector, matrix ) ->
-		if matrix == null or not matrix.IsValid() or vector == null or not vector.IsValid()
+		if not matrix? or not matrix.IsValid() or not vector? or not vector.IsValid()
 			throw new TypeError
 			
 		return new box2d.Vector2D( @Dot( vector , matrix.column_1 ), @Dot( vector, matrix.column_2 ) )
