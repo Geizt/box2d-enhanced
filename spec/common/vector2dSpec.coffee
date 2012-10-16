@@ -14,7 +14,7 @@ describe 'Vector2D', ->
 		expect( vector2d.y ).toBe 3
 
 	it 'can be validated', ->
-		valid_vector2d = vector2d.IsValid();
+		valid_vector2d = vector2d.IsValid()
 
 		expect( valid_vector2d ).toBe true
 
@@ -37,13 +37,13 @@ describe 'Vector2D', ->
 		expect( copy_vector2d.y ).toBe 3
 
 	it 'can be added', ->
-		vector2d.Add( new box2d.Vector2D( 1, 2 ) );
+		vector2d.Add( new box2d.Vector2D( 1, 2 ) )
 
 		expect( vector2d.x ).toBe 3
 		expect( vector2d.y ).toBe 5
 
 	it 'can be subtracted', ->
-		vector2d.Subtract( new box2d.Vector2D( 1, 2 ) );
+		vector2d.Subtract( new box2d.Vector2D( 1, 2 ) )
 
 		expect( vector2d.x ).toBe 1
 		expect( vector2d.y ).toBe 1
