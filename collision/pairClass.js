@@ -22,6 +22,10 @@
       this.status = 0;
     }
 
+    Pair.prototype.IsValid = function() {
+      return (this.nullPair != null) && isFinite(this.nullPair) && (this.nullProxy != null) && isFinite(this.nullProxy) && (this.tableCapacity != null) && isFinite(this.tableCapacity) && (this.tableMask != null) && isFinite(this.tableMask) && (this.pairBuffered != null) && isFinite(this.pairBuffered) && (this.pairRemoved != null) && isFinite(this.pairRemoved) && (this.pairFinal != null) && isFinite(this.pairFinal) && this.userData === null && isFinite(this.userData) && (this.proxyId1 != null) && isFinite(this.proxyId1) && (this.proxyId2 != null) && isFinite(this.proxyId2) && (this.next != null) && isFinite(this.next) && (this.status != null) && isFinite(this.status);
+    };
+
     Pair.prototype.SetBuffered = function() {
       this.status |= this.pairBuffered;
       return this;

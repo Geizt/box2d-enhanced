@@ -11,9 +11,12 @@
     beforeEach(function() {
       return buffered_pair = new box2d.BufferedPair();
     });
-    return it('can be initialized', function() {
+    it('can be initialized', function() {
       expect(buffered_pair.proxyId1).toBe(0);
       return expect(buffered_pair.proxyId2).toBe(0);
+    });
+    return it('can be validated', function() {
+      return expect(buffered_pair.IsValid()).toBe(true);
     });
   });
 

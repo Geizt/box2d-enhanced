@@ -25,6 +25,9 @@
       expect(pair.next).toBe(0);
       return expect(pair.status).toBe(0);
     });
+    it('can be validated', function() {
+      return expect(pair.IsValid()).toBe(true);
+    });
     it('can set buffered', function() {
       pair.SetBuffered();
       return expect(pair.status).toBe(0x0001);

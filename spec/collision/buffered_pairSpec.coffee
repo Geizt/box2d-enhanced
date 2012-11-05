@@ -10,3 +10,6 @@ describe 'BufferedPair', ->
 	it 'can be initialized', ->
 		expect( buffered_pair.proxyId1 ).toBe 0
 		expect( buffered_pair.proxyId2 ).toBe 0
+
+	it 'can be validated', ->
+		expect( buffered_pair.IsValid() ).toBe true

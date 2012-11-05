@@ -21,6 +21,9 @@ describe 'Pair', ->
 		expect( pair.next ).toBe 0
 		expect( pair.status ).toBe 0
 
+	it 'can be validated', ->
+		expect( pair.IsValid() ).toBe true
+
 	it 'can set buffered', ->
 		pair.SetBuffered()
 

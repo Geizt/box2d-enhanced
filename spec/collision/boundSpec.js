@@ -18,6 +18,9 @@
       expect(bound.proxyId).toBe(0);
       return expect(bound.stabbingCount).toBe(0);
     });
+    it('can be validated', function() {
+      return expect(bound.IsValid()).toBe(true);
+    });
     it('can check lower', function() {
       another_bound.value = 1;
       expect(bound.IsLower()).toBe(true);

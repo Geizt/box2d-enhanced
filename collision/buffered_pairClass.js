@@ -12,6 +12,10 @@
       this.proxyId2 = 0;
     }
 
+    BufferedPair.prototype.IsValid = function() {
+      return (this.proxyId1 != null) && isFinite(this.proxyId1) && (this.proxyId2 != null) && isFinite(this.proxyId2);
+    };
+
     return BufferedPair;
 
   })();

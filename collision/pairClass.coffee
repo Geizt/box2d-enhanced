@@ -19,6 +19,20 @@ class box2d.Pair
 		@next = 0
 		@status = 0
 
+	IsValid: ->
+		return @nullPair? && isFinite( @nullPair ) && 
+			   @nullProxy? && isFinite( @nullProxy ) && 
+			   @tableCapacity? && isFinite( @tableCapacity ) && 
+			   @tableMask? && isFinite( @tableMask ) &&
+			   @pairBuffered? && isFinite( @pairBuffered ) &&
+			   @pairRemoved? && isFinite( @pairRemoved ) &&
+			   @pairFinal? && isFinite( @pairFinal ) &&
+			   @userData == null && isFinite( @userData ) &&
+			   @proxyId1? && isFinite( @proxyId1 ) &&
+			   @proxyId2? && isFinite( @proxyId2 ) &&
+			   @next? && isFinite( @next ) &&
+			   @status? && isFinite( @status )
+
 	SetBuffered: ->
 		@status |= @pairBuffered
 

@@ -14,6 +14,9 @@ describe 'Bound', ->
 		expect( bound.proxyId ).toBe 0
 		expect( bound.stabbingCount ).toBe 0
 
+	it 'can be validated', ->
+		expect( bound.IsValid() ).toBe true
+
 	it 'can check lower', ->
 		another_bound.value = 1
 

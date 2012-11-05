@@ -8,8 +8,11 @@ describe 'BoundValues', ->
 		bound_values = new box2d.BoundValues()
 
 	it 'can be initialized', ->
-		expect( bound_values.lowerValues[0] ).toBe 0
-		expect( bound_values.lowerValues[1] ).toBe 0
+		expect( bound_values.lowerValues[ 0 ] ).toBe 0
+		expect( bound_values.lowerValues[ 1 ] ).toBe 0
 
-		expect( bound_values.upperValues[0] ).toBe 0
-		expect( bound_values.upperValues[1] ).toBe 0
+		expect( bound_values.upperValues[ 0 ] ).toBe 0
+		expect( bound_values.upperValues[ 1 ] ).toBe 0
+
+	it 'can be validated', ->
+		expect( bound_values.IsValid() ).toBe true

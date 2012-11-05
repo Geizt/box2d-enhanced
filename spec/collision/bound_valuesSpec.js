@@ -11,11 +11,14 @@
     beforeEach(function() {
       return bound_values = new box2d.BoundValues();
     });
-    return it('can be initialized', function() {
+    it('can be initialized', function() {
       expect(bound_values.lowerValues[0]).toBe(0);
       expect(bound_values.lowerValues[1]).toBe(0);
       expect(bound_values.upperValues[0]).toBe(0);
       return expect(bound_values.upperValues[1]).toBe(0);
+    });
+    return it('can be validated', function() {
+      return expect(bound_values.IsValid()).toBe(true);
     });
   });
 

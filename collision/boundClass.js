@@ -13,6 +13,10 @@
       this.stabbingCount = 0;
     }
 
+    Bound.prototype.IsValid = function() {
+      return (this.value != null) && isFinite(this.value) && (this.proxyId != null) && isFinite(this.proxyId) && (this.stabbingCount != null) && isFinite(this.stabbingCount);
+    };
+
     Bound.prototype.IsLower = function() {
       return (this.value & 0x01) === 0;
     };

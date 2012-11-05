@@ -12,6 +12,10 @@
       this.upperValues = [0, 0];
     }
 
+    BoundValues.prototype.IsValid = function() {
+      return (this.lowerValues != null) && isFinite(this.lowerValues[0]) && isFinite(this.lowerValues[1]) && (this.upperValues != null) && isFinite(this.upperValues[0]) && isFinite(this.upperValues[1]);
+    };
+
     return BoundValues;
 
   })();

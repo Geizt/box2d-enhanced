@@ -7,6 +7,11 @@ class box2d.Bound
 		@proxyId = 0
 		@stabbingCount = 0
 
+	IsValid: ->
+		return @value? && isFinite( @value ) && 
+			   @proxyId? && isFinite( @proxyId ) && 
+			   @stabbingCount? && isFinite( @stabbingCount )
+
 	IsLower: ->
 		return ( @value & 0x01 ) == 0
 
